@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AA - Randomizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>AA - Randomizer</h2>
+        <p id="randomValues"></p>
+        <p id="biggestNumber"></p>
+        <p id="nthLetter"></p>
+        <p id="timeBreakdown"></p>
+        <button onclick="generateNumbers()">Generate Random Values</button>
+    </div>
+
+    <script>
+        function generateNumbers() {
+            let num1 = Math.ceil(Math.random() * 20);
+            let num2 = Math.ceil(Math.random() * 20);
+            let num3 = Math.ceil(Math.random() * 20);
+
+            let maxNum = Math.max(num1, num2, num3);
+            let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let nthLetter = num1 <= 26 ? alphabet[num1 - 1] : "Out of bounds";
+            let totalMinutes = num2 * num3;
+            let hours = Math.floor(totalMinutes / 60);
+            let minutes = totalMinutes % 60;
+
+            document.getElementById("randomValues").innerText = `Generated numbers: ${num1}, ${num2}, ${num3}`;
+            document.getElementById("biggestNumber").innerText = `The biggest number is: ${maxNum}`;
+            document.getElementById("nthLetter").innerText = `The ${num1}th letter in the alphabet is: ${nthLetter}`;
+            document.getElementById("timeBreakdown").innerText = `Total minutes: ${totalMinutes} → ${hours} hours and ${minutes} minutes.`;
+        }
+    </script>
+</body>
+</html>
